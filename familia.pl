@@ -32,23 +32,23 @@ padre_De('Raquel','Stella').
 padre_De('Raquel','Gladys').
 padre_De('Raquel','Lucrecia').
 
-padre_De('l','Stella').
-padre_De('l','Gladys').
-padre_De('l','Lucrecia').
+padre_De('Hector','Stella').
+padre_De('Hector','Gladys').
+padre_De('Hector','Lucrecia').
 
 #tercera y cuarta generacion
 
-padre_De('','Raquel').
-padre_De('','Raquel').
+padre_De('Maria','Raquel').
+padre_De('Arquimedez','Raquel').
 
-padre_De('','l').
-padre_De('','l').
+padre_De('Josefa','Hector').
+padre_De('Gustavo','Hector').
 
-padre_De('','Blanca').
-padre_De('','Blanca').
+padre_De('Bonifacia','Blanca').
+padre_De('Benigno','Blanca').
 
-padre_De('','Jose').
-padre_De('','Jose').
+padre_De('Felicia','Jose').
+padre_De('Cristobal','Jose').
 
 
 abuelo(X,Y):- padre_De(X,Z),padre_De(Z,Y).
@@ -61,5 +61,11 @@ primo(X,Y):- padre_De(Z,X),padre_De(W,Y),hermano(Z,W).
 
 casado(X,Y):- padre_De(X,Z),padre_De(Y,Z),X\=Y.
 
-feliz(X,Y):- \+ is a.
+tioDe(A,B):- hermanoDe(A,C),padreDe(C,B).
+
+sobrinoDe(A,B):- tioDe(B,A).
+
+primoDe(A,B):- padreDe(C,A), padreDe(D,B),hermanoDe(C,D).
+
+feliz(X,Y):- padre_De(A,_).
 
